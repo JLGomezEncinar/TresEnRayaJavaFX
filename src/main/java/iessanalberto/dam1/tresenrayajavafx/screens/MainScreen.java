@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -18,8 +19,10 @@ import java.util.Optional;
 public class MainScreen {
     private VBox root = new VBox();
     private GridPane gridPane = new GridPane();
+    private HBox fila1 = new HBox();
     private Button[][] btnceldas = new Button [3][3];
-    private Label lblTurno = new Label("Turno de X");
+    private Label lblJugador1 = new Label("Jugador 1");
+    private Label lblJugador2 = new Label("Jugador 2");
     private ArrayList<Integer> primos = new ArrayList<>(Arrays.asList(2,3,5,7,11,13,17,19,23));
     private int indice = 0;
     private Jugador jugador1 = new Jugador("X",true);
@@ -55,9 +58,11 @@ public class MainScreen {
                             jugador1.setTurno(!jugador1.isTurno());
                             jugador2.setTurno(!jugador2.isTurno());
                             if (jugador1.isTurno()){
-                                lblTurno.setText("Turno de X");
+                                lblJugador1.setStyle("-fx-background-color:green;");
+                                lblJugador2.setStyle("");
                             } else {
-                                lblTurno.setText("Turno de O");
+                                lblJugador1.setStyle("");
+                                lblJugador2.setStyle("-fx-background-color:green;");
                             }
                             turno++;
                         } else {
@@ -68,10 +73,14 @@ public class MainScreen {
                 });
             }
         }
-        root.getChildren().addAll(lblTurno,gridPane);
+        fila1.getChildren().addAll(lblJugador1,lblJugador2);
+        root.getChildren().addAll(fila1,gridPane);
     }
 
     private void configurarLayout() {
+        lblJugador1.setStyle("-fx-background-color:green;");
+        fila1.setSpacing(50);
+        fila1.setAlignment(Pos.CENTER);
         root.setAlignment(Pos.CENTER);
         gridPane.setAlignment(Pos.CENTER);
 
