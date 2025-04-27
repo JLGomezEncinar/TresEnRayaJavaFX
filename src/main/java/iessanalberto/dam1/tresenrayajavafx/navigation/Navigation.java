@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Navigation {
     private static final Stage stage = new Stage();
-
+//Función que carga la pantalla principal
     public static void navigate (String destination) {
         switch (destination) {
             case "MainScreen" -> {
